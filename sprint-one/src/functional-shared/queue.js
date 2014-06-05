@@ -10,13 +10,9 @@ var makeQueue = function(){
   newQueue.storage = {};
   newQueue.qStart = 0;
   newQueue.qEnd = 0;
-//extend the queue methods onto the queue object
+//extend the queue methods onto the queue object and return
 
-  _.extend(newQueue, queueMethods);
-//return queue
-
-  return newQueue;
-
+ return _.extend(newQueue, queueMethods);
 };
 
 
