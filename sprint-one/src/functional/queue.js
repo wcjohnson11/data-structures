@@ -25,7 +25,7 @@ var makeQueue = function(){
     if((qEnd - qStart) > 0){
       qStart++;
     }
-    //return vaue
+    //return value
     return result;
   };
 
