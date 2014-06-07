@@ -1,7 +1,7 @@
 var makeTree = function(value){
   var newTree = {};
   newTree.value = value;
-  newTree.children = undefined;
+  newTree.children = [];
   _.extend(newTree, treeMethods);
   return newTree;
 };
@@ -16,11 +16,7 @@ treeMethods.addChild = function(value){
   //so each child will be a new instance of tree
   var result = makeTree(value);
 
-  if(Array.isArray(this.children)){
-    this.children.push(result);
-  } else {
-    this.children = [result];
-  }
+  this.children.push(result);
 
 };
 
@@ -29,39 +25,24 @@ treeMethods.contains = function(target){
   //if tree.children is empty return false
   //if tree has child(target) return true
   //if tree has children - recursion
-  // var contain = false;
-  if(this.children === undefined){
-    return false;
-  } else if(this.children[0].value === target){
-    return true;
-  }else{
-    treeMethods
-  }
+//     for (var i = 0; i < this.children.length; i++){
+//       console.log(target , this.children[i].value);
+//       if(this.children[i].value === target){
+//         return true;
+//       } else if (this.children[i].children){
+//         return this.children[i].contains(target);
+//       }else{
+//         return false;
+//       }
+//     }
+// };
 
-    _.each(this.children, function(childObj, index, children){
-      if(childObj.value === target){
-        // contain = true;
-        // return contain;
-        return true;
-      }else {
-        return
-      }
-
-  //     } else if (childObj.children){
-  //       // debugger;
-  //       // contain = childObj.contains(target);
-  //       return childObj.contains(target);
-  //     } else {
-  //       // contain = false;
-  //       // return contain;
-  //       return false;
-  //     }
-  //   });
-
-  //   return contain;
-  // }
+  return _.some(this.children, function(child){
+    return (child.value === target) ?
+      true :
+      child.contains(target);
+  });
 };
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
