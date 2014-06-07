@@ -1,9 +1,13 @@
 var makeBinarySearchTree = function(value){
   var newTree = {};
+  newTree.parent = null;
   newTree.value = value;
   newTree.left = null;
   newTree.right = null;
   _.extend(newTree, binaryTreeMethods);
+  if (!newTree.root){
+    newTree.root = value;
+  }
   return newTree;
 };
 
@@ -21,6 +25,7 @@ binaryTreeMethods.insert = function(value){
   if (node.value > this.value){
     if (!this.right){
       this.right = node;
+      node.parent = this;
     } else {
       this.right.insert(value);
     }
@@ -28,6 +33,7 @@ binaryTreeMethods.insert = function(value){
     if (node.value < this.value){
       if (!this.left){
         this.left = node;
+        node.parent = this;
       } else {
         this.left.insert(value);
       }
@@ -35,9 +41,33 @@ binaryTreeMethods.insert = function(value){
   }
 };
 
-binaryTreeMethods.contains = function(value){};
+binaryTreeMethods.contains = function(value){
+  //recursively traverse the nodes
+  if (this.value === value){
+    return true;
+  } else if (value < this.value && this.left !== null){
 
-binaryTreeMethods.depthFirstLog = function(callback){};
+    return this.left.contains(value);
+  } else if (this.right !==null){
+    return this.right.contains(value);
+  } else{
+    return false;
+  }
+};
+
+binaryTreeMethods.depthFirstLog = function(callback){
+  var current = this;
+  var next;
+  if (current){
+    callback(current.value);
+    if (current.left){
+      this.left.depthFirstLog(callback);
+    } else if (current.right){
+      this.right.depthFirstLog(callback);
+    }
+
+  }
+};
 
 /*
  * Complexity: What is the time complexity of the above functions?
