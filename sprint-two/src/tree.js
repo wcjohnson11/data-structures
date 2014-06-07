@@ -27,7 +27,9 @@ treeMethods.contains = function(target){
   //if tree has children - recursion
 
   return _.some(this.children, function(child){
-    return (child.value === target) ? true : child.contains(target);
+    return (child.value === target) ?
+      true :
+      child.contains(target);
   });
 };
 
