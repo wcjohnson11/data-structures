@@ -40,7 +40,6 @@ Graph.prototype.removeNode = function(node){
   //if _.isEmpty, delete node
   //FINALLY delete this.nodes[searchNode]
   if(this.nodes.hasOwnProperty(node)){
-    // debugger;
     _.each(this.nodes[node], function(value, edge){
       delete this.nodes[node][edge][node];
       if (_.empty(this.nodes[edge])){
@@ -72,12 +71,12 @@ Graph.prototype.removeEdge = function(fromNode, toNode){
   //check if fromNode _.isEmpty, if true, delete fromNode
   //check if toNode _.isEmpty, if true, delete toNode
   delete this.nodes[fromNode][toNode];
-  if (_.isEmpty(this.nodes.fromNode)){
-    delete this.nodes.fromNode;
+  if (_.isEmpty(this.nodes[fromNode])){
+    delete this.nodes[fromNode];
   }
   delete this.nodes[toNode][fromNode];
-  if (_.isEmpty(this.nodes.toNode)){
-    delete this.nodes.toNode;
+  if (_.isEmpty(this.nodes[toNode])){
+    delete this.nodes[toNode];
   }
 };
 
