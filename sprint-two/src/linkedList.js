@@ -56,4 +56,9 @@ var makeNode = function(value){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ makeNode and makeLinkedList are constant
+ addToTail and removeHead are also constant
+ contains is linear;
+
+
  */

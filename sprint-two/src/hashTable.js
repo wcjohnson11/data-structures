@@ -5,12 +5,10 @@ var HashTable = function(){
 
 HashTable.prototype.insert = function(k, v){
   var i = getIndexBelowMaxForKey(k, this._limit);
-      //use limited array.set with i and v
+  //use limited array.set with i and v
   //if the storage[i] is empty
   //create a newArray(i,)
   //call storage.set(i,newArray)
-
-
   //else (storage[i] !== undefined)
   //check each value, key,array at storage[i]
   //if key exists, overwrite it
@@ -19,13 +17,11 @@ HashTable.prototype.insert = function(k, v){
   if (!Array.isArray(this._storage.get(i))){
     var newArray = [[k,v]];
     this._storage.set(i,newArray);
-    // this._storage.get(i).push([k,v]);
 
   }else{
     var overWrite = false;
     var arr = this._storage.get(i);
     _.each(arr, function(value, key, collection){
-      // debugger;
       if (k === value[0]){
         arr[key] = [k,v];
         overWrite = true;
@@ -38,14 +34,13 @@ HashTable.prototype.insert = function(k, v){
 };
 
 HashTable.prototype.retrieve = function(k){
-
+  //Loop through the values in storage and if key is equal to
+  //index 0 of the value, return index1 of the value
   var i = getIndexBelowMaxForKey(k, this._limit);
-  //Use limited array.get with i
   var arr = this._storage.get(i);
   var result = null;
   _.each(arr, function(value, key, collection){
     if (k === value[0]){
-      // debugger;
       result = value[1];
     }
   });
@@ -61,7 +56,6 @@ HashTable.prototype.remove = function(k){
 
   this._storage.each(function(value, index, array){
 
-
     if(index === i){
       array[index] = null;
     }
@@ -73,4 +67,7 @@ HashTable.prototype.remove = function(k){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ *insert, retrieve, remove - linear
+ *
+ *
  */

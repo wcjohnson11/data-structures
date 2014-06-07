@@ -28,4 +28,6 @@ setPrototype.remove = function(item){
 
 /*
  * Complexity: What is the time complexity of the above functions?
+ makeSet is constant
+ add, contains and remove are linear
  */
