@@ -25,22 +25,9 @@ treeMethods.contains = function(target){
   //if tree.children is empty return false
   //if tree has child(target) return true
   //if tree has children - recursion
-//     for (var i = 0; i < this.children.length; i++){
-//       console.log(target , this.children[i].value);
-//       if(this.children[i].value === target){
-//         return true;
-//       } else if (this.children[i].children){
-//         return this.children[i].contains(target);
-//       }else{
-//         return false;
-//       }
-//     }
-// };
 
   return _.some(this.children, function(child){
-    return (child.value === target) ?
-      true :
-      child.contains(target);
+    return (child.value === target) ? true : child.contains(target);
   });
 };
 
